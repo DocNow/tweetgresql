@@ -9,7 +9,7 @@ Twitter API:
 * ACCESS_TOKEN
 * ACCESS_TOKEN_SECRET
 
-Install a few things:
+Install a few node dependencies:
 
     npm install
 
