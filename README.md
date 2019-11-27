@@ -20,5 +20,3 @@ Then start loading some tweets from the filter stream:
 Connect to PostgreSQL and see the data loaded.
 
 [PostgreSQL]: https://www.postgresql.org/
-
-
