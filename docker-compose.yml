@@ -1,0 +1,28 @@
+version: "3"
+services:
+
+  db:
+    build:
+      context: db
+    restart: always
+    environment:
+      POSTGRES_USER: tweets
+      POSTGRES_PASSWORD: tweets
+
+  load:
+    build:
+      context: .
+    environment:
+      PGUSER: "tweets"
+      PGHOST: "db"
+      PGPASSWORD: "tweets"
+      PGDATABASE: "tweets"
+      CONSUMER_KEY: "${CONSUMER_KEY}"
+      CONSUMER_SECRET: "${CONSUMER_SECRET}"
+      ACCESS_TOKEN: "${ACCESS_TOKEN}"
+      ACCESS_TOKEN_SECRET: "${ACCESS_TOKEN_SECRET}"
+    links:
+      - db
+    depends_on:
+      - db
+    command: ["wait-for-it", "db:5432", "--", "node", "load.js", "us"]

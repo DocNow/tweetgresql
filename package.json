@@ -1,0 +1,21 @@
+{
+  "name": "tweetgresql",
+  "version": "1.0.0",
+  "description": "This is just a sandbox for experimenting with modeling tweets in PostgreSQL for the [DocNow] project.",
+  "main": "load.js",
+  "dependencies": {
+    "pg": "^7.14.0",
+    "twit": "^2.2.11"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DocNow/tweetgresql.git"
+  },
+  "author": "Ed Summers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DocNow/tweetgresql/issues"
+  },
+  "homepage": "https://github.com/DocNow/tweetgresql#readme"
+}

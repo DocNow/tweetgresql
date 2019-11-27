@@ -9,15 +9,9 @@ Twitter API:
 * ACCESS_TOKEN
 * ACCESS_TOKEN_SECRET
 
-Install a few node dependencies:
+Then you can use docker-compose to start up the test:
 
-    npm install
-
-Then start loading some tweets from the filter stream:
-
-    ./load.js obama
-
-Connect to PostgreSQL and see the data loaded.
+    docker-compose up
 
 [PostgreSQL]: https://www.postgresql.org/
 

@@ -10,7 +10,7 @@ const twitter = new Twit({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET,
 })
 
-const db = new pg.Client({database: 'tweets'}) 
+const db = new pg.Client() 
 db.connect()
 
 const track = process.argv[2]
