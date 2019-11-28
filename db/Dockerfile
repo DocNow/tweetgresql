@@ -1,2 +1,3 @@
-FROM postgres:12.1
+FROM timescale/timescaledb:latest-pg11
+# load schema
 COPY schema.sql /docker-entrypoint-initdb.d/
