@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "This is just a sandbox for experimenting with modeling tweets in PostgreSQL for the [DocNow] project.",
   "main": "load.js",
+  "scripts":{
+    "start": "node load.js",
+    "migrate": "knex migrate:latest",
+    "migrate-and-start": "npm run migrate && npm run start"
+  },
   "dependencies": {
+    "knex": "^0.20.4",
     "pg": "^7.14.0",
     "twit": "^2.2.11"
   },

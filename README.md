@@ -8,6 +8,9 @@ Twitter API:
 * CONSUMER_SECRET
 * ACCESS_TOKEN
 * ACCESS_TOKEN_SECRET
+* TRACK
+
+TRACK is the keyword you would like to use when collecting data from Twitter's filter stream.
 
 Then you can use docker-compose to start up the test:
 

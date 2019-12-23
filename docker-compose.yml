@@ -1,28 +1,30 @@
 version: "3"
+
 services:
 
-  db:
-    build:
-      context: db
+  db: 
+    image: postgres
     restart: always
     environment:
-      POSTGRES_USER: tweets
-      POSTGRES_PASSWORD: tweets
+      POSTGRES_USER: "${DB_USERNAME}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: "${DB_DATABASE}"
 
   load:
     build:
       context: .
     environment:
-      PGUSER: "tweets"
-      PGHOST: "db"
-      PGPASSWORD: "tweets"
-      PGDATABASE: "tweets"
-      CONSUMER_KEY: "${CONSUMER_KEY}"
-      CONSUMER_SECRET: "${CONSUMER_SECRET}"
-      ACCESS_TOKEN: "${ACCESS_TOKEN}"
-      ACCESS_TOKEN_SECRET: "${ACCESS_TOKEN_SECRET}"
+      - DB_HOSTNAME=db
+      - DB_USERNAME
+      - DB_PASSWORD
+      - DB_DATABASE
+      - CONSUMER_KEY
+      - CONSUMER_SECRET
+      - ACCESS_TOKEN
+      - ACCESS_TOKEN_SECRET
+      - TRACK
     links:
       - db
     depends_on:
       - db
-    command: ["wait-for-it", "db:5432", "--", "node", "load.js", "us"]
+    entrypoint: "wait-for-it db:5432 -- npm run migrate-and-start"
