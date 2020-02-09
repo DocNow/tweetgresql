@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-console.log(process.env)
-
 const Twit = require('twit')
 const knex = require('knex')
 const knexfile = require('./knexfile')
@@ -13,8 +11,13 @@ const twitter = new Twit({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET,
 })
 
+if (process.argv.length < 3) {
+  console.log('usage: load.js <query>')
+  process.exit(-1)
+}
+
 const db = knex(knexfile)
-const track = process.env.TRACK
+const track = process.argv[2]
 const stream = twitter.stream('statuses/filter', {track})
 
 stream.on('tweet', t => {
@@ -23,3 +26,6 @@ stream.on('tweet', t => {
     return trx('tweets').insert({id: t.id_str, json: t})
   })
 })
+
+function addTweet(tweet) {
+}
