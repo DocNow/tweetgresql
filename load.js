@@ -19,23 +19,29 @@ async function main() {
     process.exit(-1)
   }
 
-  const [user_id] = await db.transaction(trx => {
-    return trx('user').insert({
-      updated: new Date(),
-      tweet_quota: 50000,
-      twitter_screen_name: "edsu",
-      twitter_consumer_key: "123",
-      twitter_consumer_secret: "456"
-    }, 'id')
-  })
-
   const [collection_id] = await db.transaction(trx => {
-    return trx('collection').insert({
-      updated: new Date(),
-      user_id: user_id,
-      title: 'Test',
-      description: 'This is a test'
-    }, 'id')
+    return trx
+      .insert({
+        updated: new Date(),
+        tweet_quota: 50000,
+        twitter_screen_name: "edsu",
+        twitter_consumer_key: "123",
+        twitter_consumer_secret: "456"
+      }, 'id')
+      .into('user')
+      .then(ids => {
+        return trx
+          .insert({
+            updated: new Date(),
+            user_id: ids[0],
+            title: 'Test',
+            description: 'This is a test'
+          }, 'id')
+          .into('collection')
+      })
+      .catch(e => {
+        console.log(e)
+      })
   })
 
   const track = process.argv[2]
