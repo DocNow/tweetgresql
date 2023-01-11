@@ -9,7 +9,7 @@
     "migrate-and-start": "npm run migrate && npm run start"
   },
   "dependencies": {
-    "knex": "^0.20.4",
+    "knex": "^2.4.0",
     "pg": "^7.14.0",
     "twit": "^2.2.11"
   },
